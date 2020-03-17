@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class ArrayListGenericsExample {
@@ -55,7 +56,8 @@ public class ArrayListGenericsExample {
                 new Person(3, "ranjeet", 40),
                 new Person(4, "sanjeev", 25),
                 new Person(5, "ankit", 24),
-                new Person(6, "vineet", 28)
+                new Person(6, "vineet", 28),
+                new Person(7, "ranjeet", 40)
         );
 
         String name = persons.stream()
@@ -71,6 +73,18 @@ public class ArrayListGenericsExample {
                 .collect(Collectors.toList());
 
         System.out.println(list1);
+
+
+        System.out.println("indexof manidhar item ::" + list1.indexOf("manidhar"));
+
+
+        System.out.println("last index of ranjeet item:" + list1.lastIndexOf("ranjeet"));
+
+        System.out.println("to get the second last item using size and get method");
+
+        String lastSecond = list1.get(list1.size() - 2);
+        System.out.println("second last item ::" + lastSecond);
+
 //      list1.forEach(System.out::println);
         List<Employee> employees = persons.stream().map(person -> {
             Employee employee = new Employee();
@@ -92,6 +106,20 @@ public class ArrayListGenericsExample {
         List<String> result = language.filter(Objects::nonNull).collect(Collectors.toList());
         System.out.println(result);
 
+
+        //------------------------------------------------------------------------------------
+
+        System.out.println("using List<Integers> as items in the object:");
+        List<Integer> integers = Arrays.asList(1, 2, 3, 7, 3, 7, 3, 9, 5, 2, 5, 2, 7, 4, 8, 9);
+
+        int sumIntegers = integers.stream().mapToInt(Integer::intValue).sum();
+        System.out.println("Total sum of integers :" + sumIntegers);
+
+        System.out.println("sum of 15 numbers:::");
+        Stream<Integer> integerStream = Stream.iterate(1, n -> n + 1).limit(15);
+        IntStream intStream = integerStream.mapToInt(x -> x);
+        int sum1 = intStream.sum();
+        System.out.println("Total ::" + sum1);
 
     }
 }
